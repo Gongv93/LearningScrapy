@@ -1,0 +1,1 @@
+This is a simple project to get me familiar with Scrapy and all the things it can do.
