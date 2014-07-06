@@ -9,8 +9,9 @@ class Articles(Item):
     # define the fields for your item here like:
     # name = Field()
 
-    title  = Field();
-    desc   = Field();
+	url = Field();
+    #title  = Field();
+    #desc   = Field();
     #author = Field();
     #date   = Field();
     #source = Field();

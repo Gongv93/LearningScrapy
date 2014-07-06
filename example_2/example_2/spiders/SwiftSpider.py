@@ -1,21 +1,23 @@
 from scrapy.spider import Spider
 from scrapy.selector import Selector
+from scrapy.contrib.spiders import CrawlSpider,Rule
+from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
 
 from example_2.items import Articles
 
-class SwiftSpider( Spider ) :
-	name 			=   "swift";
-	allowed_domains = [ "http://swift.mkrsqr.com/" ]
-	start_urls 		= [ "http://swift.mkrsqr.com/" ]
+class SwiftSpider( CrawlSpider ) :
+	name =   "swift";
+	allowed_domains = [ "swift.mkrsqr.com" ];
+	start_urls = [ "http://swift.mkrsqr.com/" ];
+	rules  = ( Rule( 
+					SgmlLinkExtractor( allow = ('/?p=\d+',), unique =  True ), 
+					callback = 'parse_news' 
+			),		
+	);		
 
-	def parse( self, response ) :
-		sel   = Selector(response);
-		sites = sel.xpath( '//article' );
-		items = []
-
-		for site in sites :
-			item = Articles();
-			item[ 'title' ]  = site.xpath( 'div[@class="entry-inner"]/header/h2[@class="entry-title"]/text()' ).extract();
-			item[ 'desc' ]   = site.xpath( 'div[@class="entry-inner"]/div[@class="entry-content"]/p/a/text()' ).extract();
-			items.append(item);
-		return items;
+	def parse_news( self, response ) :
+		item = Articles();
+		item[ 'url' ] = response.url;
+		#item[ 'title' ]    = response.xpath( '//article/header/h1/text()' ).extract();
+		#tem[ 'desc' ]   = response.xpath( '//article/div/table/tbody/tr/td[2]/font/div[2]/font[2]/text()' ).extract();
+		return item;
