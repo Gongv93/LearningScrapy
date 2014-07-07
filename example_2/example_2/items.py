@@ -10,7 +10,7 @@ class Articles(Item):
     # name = Field()
 
 	url = Field();
-    #title  = Field();
+	title = Field();
     #desc   = Field();
     #author = Field();
     #date   = Field();
