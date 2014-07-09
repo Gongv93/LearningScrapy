@@ -6,7 +6,6 @@
 from scrapy.item import Item, Field
 
 class RedditItems(Item):
-    #Ckarma = Field();
     comment = Field();
     title = Field();
     pass

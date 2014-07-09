@@ -5,4 +5,7 @@
 
 class Example3Pipeline(object):
     def process_item(self, item, spider):
+    	if not item[ 'comment' ] :
+    		item[ 'comment' ] = "Comment N/A";
+    		
         return item
