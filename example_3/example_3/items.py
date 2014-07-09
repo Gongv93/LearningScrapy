@@ -5,7 +5,8 @@
 
 from scrapy.item import Item, Field
 
-class Example3Item(Item):
-    # define the fields for your item here like:
-    # name = Field()
+class RedditItems(Item):
+    #Ckarma = Field();
+    comment = Field();
+    title = Field();
     pass
