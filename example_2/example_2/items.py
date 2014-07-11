@@ -6,12 +6,9 @@
 from scrapy.item import Item, Field
 
 class Articles(Item):
-    # define the fields for your item here like:
-    # name = Field()
-
-	url = Field();
-	title = Field();
-    #desc   = Field();
-    #author = Field();
-    #date   = Field();
-    #source = Field();
+	title  = Field();
+	catag  = Field();
+	author = Field();
+	date   = Field();
+	source = Field();
+	link   = Field();
